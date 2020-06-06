@@ -53,8 +53,25 @@ class CompressDecompress():
     def get_compressed_str(self):
         return self.compressed_str
 
-    def decompress(self, str):
-        pass
+    def decompress(self, string):
+        char_flag = [  char.isalpha() for char in string]
+        
+        combi = []
+        initial_index = 0
+        for i in range(len(string)):
+            if string[i].isalpha():
+                combi.append( string[initial_index: i+1] )
+                initial_index = i+1
+
+        decompressed_str = ""
+        for sub in combi:
+            char = sub[-1]
+            try:    
+                num = int(sub[:len(sub)-1])
+            except:
+                num = 0
+            decompressed_str += "".join([ char for i in range(num) ])
+        return decompressed_str
 
     def get_decompressed_str(self):
         return self.decompressed_str
@@ -63,3 +80,7 @@ class CompressDecompress():
 if __name__ == "__main__":
     obj1 = CompressDecompress("aaaabbcccccdde", "compress")
     print(obj1.get_compressed_str())
+
+
+    obj2 = CompressDecompress("4a2b5c2d1e", "decompress")
+    print(obj2.get_decompressed_str())

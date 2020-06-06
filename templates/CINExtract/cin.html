@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>CIN Identifiction</title>
+</head>
+
+<body>
+    <div class="container">
+        <form method="post" action="{% url 'cin' %}" enctype="multipart/form-data">
+
+            {% csrf_token %}
+            {{form}}
+
+            <input type="submit" value="submit">
+        </form>
+    </div>
+
+    <div>
+    
+        {{form_data}}
+
+    </div>
+
+
+
+
+</body>
+
+</html>
